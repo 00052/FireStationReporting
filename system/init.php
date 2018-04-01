@@ -65,44 +65,9 @@ spl_autoload_register(array($autoload, 'invoke'));
  * Loading Logger
  */
 require_once SYSTEM_ROOT . '/classes/Log.class.php';
-
-/**
- * 3rd party libraries
- */
 require_once SYSTEM_ROOT . '/classes/smarty/Smarty.class.php';
-
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/getid3.php';
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/module.archive.gzip.php';
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/module.archive.rar.php';
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/module.archive.szip.php';
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/module.archive.tar.php';
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/module.archive.zip.php';
-require_once SYSTEM_ROOT . '/classes/3rdparty/getid3/module.misc.iso.php';
-
 require_once SYSTEM_ROOT . '/classes/3rdparty/JSRMS/JSRMS.php';
-
 require_once SYSTEM_ROOT . '/classes/3rdparty/parsedown/Parsedown.php';
-
-/**
- * Include all handler
- */
-require_once SYSTEM_ROOT . '/handler/HandlerBase.class.php';
-require_once SYSTEM_ROOT . '/handler/SourceCodeHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/MarkdownHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/ImageHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/PDFHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/MediaHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/CompressedHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/OfficeHandler.class.php';
-require_once SYSTEM_ROOT . '/handler/DefaultHandler.class.php';
-
-/**
- * Include imagick imageresizer
- * if imagick is available
- */
-if(extension_loaded('imagick') && class_exists('Imagick')) {
-	require_once SYSTEM_ROOT . '/classes/ImageResize.Imagick.class.php';
-}
 
 /**
  * Load language files

@@ -137,12 +137,8 @@
                     <span class="pull-right">{$maxupload|@filesize}</span>
                 </li>
                 <li class="list-group-item">
-                	<span class="str-truncated">{'Extension'|@lang} "imagick"</span>
-                    <span class="pull-right">{if $imagick}<i class="fa fa-check" title="{'Installed'|@lang}"></i>{else}<i class="fa fa-remove" title="{'NotInstalled'|@lang}"></i>{/if}</span>
-                </li>
-                <li class="list-group-item">
-                	<span class="str-truncated">{'Extension'|@lang} "rar"</span>
-                    <span class="pull-right">{if $rar}<i class="fa fa-check" title="{'Installed'|@lang}"></i>{else}<i class="fa fa-remove" title="{'NotInstalled'|@lang}"></i>{/if}</span>
+                	<span class="str-truncated">XXX</span>
+                    <span class="pull-right"><i class="fa fa-check" title="yes"></i></span>
                 </li>
             </ul>
         </div>

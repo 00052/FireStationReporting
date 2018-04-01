@@ -63,7 +63,7 @@ System.config.modRewrite = {$MOD_REWRITE};
     
     <footer>
         <div class="wrapper">
-            © {'Y'|date} | <a href="http://192.168.102.13" data-noajax="true">东软网络安全工作室</a>
+            © {'Y'|date} | <a href="" data-noajax="true">SimplePHP</a>
         </div>
     </footer>
 </div>

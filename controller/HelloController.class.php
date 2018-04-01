@@ -8,6 +8,7 @@ final class HelloController extends ControllerBase {
 	public function hello() {
 		$smarty = new Template;
 		$smarty->assign('title','Title');
+		$smarty->assign('isAdmin',System::getUser() != NULL && System::getUser()->isAdmin);
 		$smarty->display('hello/main.tpl');
 	}
 

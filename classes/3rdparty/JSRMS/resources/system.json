@@ -19,9 +19,6 @@
 			"name" : "history"
 		},
 		{
-			"name" : "upload"
-		},
-		{
 			"name" : "bootstrap"
 		}
     ]

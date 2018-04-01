@@ -55,7 +55,7 @@ final class System {
 	 */
 	private static function buildNavigation() {
 		if(self::getUser() != NULL) {
-			Navigation::addElement(new NavigationElement(System::getLanguage()->_('Hello'), 'HelloController', 'hello', false, 'hdd-o'));
+			Navigation::addElement(new NavigationElement(System::getLanguage()->_('Welcome'), 'HelloController', 'hello', true, 'hdd-o'));
 			
 			if(self::getUser()->isAdmin) {
 				Navigation::addElement(new NavigationElement(System::getLanguage()->_('Users'), 'UsersController', 'index', true, 'users'));
@@ -122,6 +122,7 @@ final class System {
 	 */
 	public static function run() {
 		Router::getInstance()->run();	
+		debug_print_backtrace();
 	}
 	
 	/**

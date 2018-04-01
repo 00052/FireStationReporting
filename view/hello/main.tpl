@@ -1,4 +1,6 @@
 {extends 'main.tpl'}
 {block name=content}
-{'Welcome'|@lang}
+	<p>{'Welcome'|@lang}</p>
+	<br />
+	<p>{if $isAdmin}Logged in{/if}</p>
 {/block}
