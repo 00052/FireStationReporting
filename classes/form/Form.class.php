@@ -170,9 +170,8 @@ class Form extends ElementCollection {
 		if($this->submit instanceof Button) {
 			$html[] = '	<button class="btn btn-primary btn-sm" type="submit">' . ($this->submit->class != '' ? '<span class="fa fa-'.$this->submit->class.'"> </span> ' : '') . $this->submit->caption . '</button>';
 		}
-		
 		foreach($this->buttons as $button) {
-			$html[] = '	<a class="btn btn-default btn-sm" role="button" href="'.$button->url.'">' . ($button->class != '' ? '<span class="fa fa-'.$button->class.'"> </span> ' : '') . $button->caption . '</a>';
+			$html[] = '	<a class="btn btn-default btn-sm" role="button" href="'.$button->url.'" '.($button->noajax ? 'data-noajax=true' : '').'>' . ($button->class != '' ? '<span class="fa fa-'.$button->class.'"> </span> ' : '') . $button->caption . '</a>';
 		}
 		
 		$html[] = '</div>';
@@ -197,11 +196,13 @@ final class Button {
 	public $caption;
 	public $url;
 	public $class;
+	public $noajax = TRUE;
 	
-	public function __construct($caption, $class = '', $url = '') {
+	public function __construct($caption, $class = '', $url = '', $noajax = TRUE) {
 		$this->caption = $caption;
 		$this->url = $url;
 		$this->class = $class;	
+		$this->noajax = $noajax;
 	}
 }
 ?>

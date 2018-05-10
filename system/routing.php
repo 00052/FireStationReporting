@@ -24,6 +24,11 @@ $router->addRoute('/users/add', 'UsersController', 'add');
 $router->addRoute('/users/edit/:uid:', 'UsersController', 'edit');
 $router->addRoute('/users/delete/:uid:', 'UsersController', 'delete');
 
+$router->addRoute('/officer', 'OfficerController', 'index');
+$router->addRoute('/officer/add', 'OfficerController', 'add');
+$router->addRoute('/officer/delete/:id:', 'OfficerController', 'delete');
+
+
 // Admin panel
 $router->addRoute('/admin', 'AdminController', 'index');
 $router->addRoute('/admin/updateCheck', 'AdminController', 'updateCheck');
@@ -33,5 +38,18 @@ $router->addRoute('/api', 'ApiController', 'index');
 $router->addRoute('/api/auth', 'ApiController', 'login');
 $router->addRoute('/api/auth/logout', 'ApiController', 'logout');
 
+
 $router->addRoute('/hello', 'HelloController', 'hello');
+
+
+$router->addRoute('/report', 'ReportController', 'index');
+$router->addRoute('/report/add/zdsl', 'ReportController', 'add_station_strength');
+$router->addRoute('/report/add/wxzsl', 'ReportController', 'add_small_station_strength');
+
+$router->addRoute('/reports', 'ReportsController', 'index');
+$router->addRoute('/reports/zdsl', 'ReportsController', 'stationStrength');
+$router->addRoute('/reports/wxzsl', 'ReportsController', 'smallStationStrength');
+
+
+
 ?>

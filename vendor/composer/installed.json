@@ -1,0 +1,54 @@
+[
+    {
+        "name": "icanboogie/datetime",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ICanBoogie/DateTime.git",
+            "reference": "16314ad8b8bbd9a166ea6917d916fbbb6acbf229"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ICanBoogie/DateTime/zipball/16314ad8b8bbd9a166ea6917d916fbbb6acbf229",
+            "reference": "16314ad8b8bbd9a166ea6917d916fbbb6acbf229",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "icanboogie/common": "~1.2"
+        },
+        "suggest": {
+            "icanboogie/common": "Allows finer exceptions to be thrown"
+        },
+        "time": "2015-12-22T09:22:17+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "lib/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Olivier Laviale",
+                "email": "olivier.laviale@gmail.com",
+                "homepage": "http://www.weirdog.com/",
+                "role": "Developer"
+            }
+        ],
+        "description": "Extends the features of PHP DateTime and DateTimeZone",
+        "homepage": "http://icanboogie.org/",
+        "keywords": [
+            "date",
+            "time",
+            "timezone"
+        ]
+    }
+]

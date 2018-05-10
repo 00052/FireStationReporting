@@ -80,8 +80,19 @@ final class UsersController extends ControllerBase {
 		
 		$language = new Radiobox('lang', System::getLanguage()->_('Language'), L10N::getLanguages(), LANGUAGE);
 		$language->binding = new Databinding('lang');
+
+		$usertype = new Select('usertype', 
+			System::getLanguage()->_('UserType'), 
+			array(
+				'0' => System::getLanguage()->_('Administrator'),
+				'1' => System::getLanguage()->_('Squadron'), 
+				'2' => System::getLanguage()->_('Platoon'), 
+			)
+		);
+		$usertype->binding = new Databinding('type');
+
 		
-		$fieldset->addElements($username, $nickname, $email, $language);
+		$fieldset->addElements($username, $nickname, $email, $usertype, $language);
 		$form->addElements($fieldset);
 		
 		$fieldset = new Fieldset(System::getLanguage()->_('Password'));
@@ -96,9 +107,7 @@ final class UsersController extends ControllerBase {
 		
 		$fieldset = new Fieldset(System::getLanguage()->_('Settings'));
 		
-		$admin = new Radiobox('admin', System::getLanguage()->_('Admin'), array('1' => System::getLanguage()->_('YesStr'), '0' => System::getLanguage()->_('NoStr')));
-		$admin->binding = new Databinding('isAdmin');
-		
+				
 		$form->setSubmit(new Button(
 			System::getLanguage()->_('Save'),
 			'floppy-disk'
@@ -171,15 +180,20 @@ final class UsersController extends ControllerBase {
 		
 		if($user->uid != System::getUser()->uid) {
 			$fieldset = new Fieldset(System::getLanguage()->_('Settings'));
-			//$quota = new Text('quota', System::getLanguage()->_('Quota') . ' (MB)', true, 'numeric');
-			//$quota->binding = new Databinding('quota');
 			
-			//$p = new Paragraph(System::getLanguage()->_('QuotaInfo'));
+
+			$usertype = new Select('usertype', 
+				System::getLanguage()->_('UserType'), 
+				array(
+					'0' => System::getLanguage()->_('Administrator'),
+					'1' => System::getLanguage()->_('Squadron'), 
+					'2' => System::getLanguage()->_('Platoon'), 
+				)
+			);
+			$usertype->binding = new Databinding('type');
+
 			
-			$admin = new Radiobox('admin', System::getLanguage()->_('Admin'), array('1' => System::getLanguage()->_('YesStr'), '0' => System::getLanguage()->_('NoStr')));
-			$admin->binding = new Databinding('isAdmin');
-			
-			$fieldset->addElements($admin);		
+			$fieldset->addElements($usertype);		
 			$form->addElements($fieldset);
 		}
 		

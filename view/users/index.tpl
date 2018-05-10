@@ -3,16 +3,14 @@
 
 <table class="table table-striped table-hover">
 	<colgroup>
+        <col class="col-sm" />
         <col />
-        <col class="col-sm" />
-        <col class="col-sm" />
-        <col class="col-md" />
     </colgroup>
     
     <thead>
     	<tr>
         	<th>{'Username'|@lang}</th>
-            <th>{'EMail'|@lang}</th>
+			<th>{'Nickname'|@lang}</th>
         </tr>
     </thead>
     
@@ -21,9 +19,9 @@
     	<tr>
         	<td>
             	<i class="fa fa-user"></i>
-            	<a href="{Router->build p1='UsersController' p2='edit' p3=$user}">{$user->username} ({$user})</a>
+            	<a href="{Router->build p1='UsersController' p2='edit' p3=$user}">{$user->username}</a>
             </td>
-            <td>{$user->email}</td>
+			<td>{$user->nickname}</td>
         </tr>
 {/foreach}
     </tbody>

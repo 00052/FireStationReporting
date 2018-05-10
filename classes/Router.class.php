@@ -154,7 +154,7 @@ final class Router {
 							$uri	= str_replace(':'.$key.':', $params->__get($key), $uri);
 						}
 					} catch(Exception $e) {
-						continue;	
+						continue;
 					}
 				}
 			}

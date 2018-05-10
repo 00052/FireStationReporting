@@ -1,0 +1,5 @@
+{
+    "require": {
+        "icanboogie/datetime": "^1.2"
+    }
+}

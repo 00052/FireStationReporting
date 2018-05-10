@@ -118,15 +118,7 @@ final class ApiController extends ControllerBase {
 		$response->send();
 	}
 	
-	public function quota() {
-		$response = new AjaxResponse();
-		$response->success = true;
-		$response->data = new Object();
-		$response->data->quota = System::getUser()->quota;
-		$response->data->available = System::getUser()->getFreeSpace();
-		
-		$response->send();	
-	}
+	
 	
 	public function upload() {
 		$filename = $this->getParam('filename', '');

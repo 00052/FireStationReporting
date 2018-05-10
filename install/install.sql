@@ -9,7 +9,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` text COLLATE utf8_unicode_ci,
-  `admin` varchar(1) COLLATE utf8_unicode_ci DEFAULT '0',
+  `type` smallint(1) COLLATE utf8_unicode_ci CHECK(type>=0 and type<=2),
   `design` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'dynamic',
   `last_login` int(11) DEFAULT NULL,
   `lang` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -47,3 +47,5 @@ CREATE TABLE `sessions` (
   `data` text COLLATE utf8_unicode_ci,
   UNIQUE KEY `sid_UNIQUE` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+source app.sql;

@@ -151,7 +151,7 @@ final class Install {
 					$errorPassword = 'Password must not be empty.';
 				} else {
 				
-					$sql = $db->prepare('INSERT INTO users (username, password, salt, last_login, lang, admin) VALUES (:username, :password, :salt, :lastlogin, :language, :admin)');
+					$sql = $db->prepare('INSERT INTO users (username, password, salt, last_login, lang, type) VALUES (:username, :password, :salt, :lastlogin, :language, :type)');
 					
 					$salt = Utils::createPasswordSalt();
 					$sql->execute(array(
@@ -159,7 +159,7 @@ final class Install {
 						':password' => Utils::createPasswordHash($password, $salt),
 						':salt'		=> $salt,
 						':lastlogin'	=> time(),
-						':admin' => '1',
+						':type' => 0, /* 0 is Admin */
 						':language'	=> LANGUAGE
 					));
 					unset($salt);

@@ -18,7 +18,7 @@
     <header>
         <div class="container-fluid">
             <h1>
-            	sharecloud
+            	SimplePHP
             </h1>
     </header>
     
@@ -42,7 +42,7 @@
 
 <footer>
 	<div class="wrapper">
-    	© {'Y'|date} | <a href="https://github.com/sharecloud/sharecloud" data-noajax="true">sharecloud</a>
+    	© {'Y'|date} | <a href="https://github.com/poilynx/SimplePHP" data-noajax="true">SimplePHP</a>
     </div>
 </footer>
 

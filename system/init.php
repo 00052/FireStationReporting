@@ -47,6 +47,8 @@ require_once SYSTEM_ROOT . '/classes/Exceptions.class.php';
  */
 require_once SYSTEM_ROOT . '/classes/AutoloadHelper.class.php';
 
+require_once SYSTEM_ROOT . '/vendor/autoload.php';
+
 /**
  * Setting up autoload directories
  */

@@ -30,9 +30,22 @@ final class ProfileController extends ControllerBase {
 		$form->binding = $user;
 		
 		$fieldset = new Fieldset(System::getLanguage()->_('General'));
+
 		
+		$username = new Text('username', System::getLanguage()->_('Username'));
 		$nickname = new Text('nickname', System::getLanguage()->_('Nickname'));
-		$nickname->binding = new Databinding('nickname');
+		
+		if($user->type == User::USER_ADMIN) {
+			$username->binding = new Databinding('username');
+			$nickname->binding = new Databinding('nickname');
+		} else {
+			$username->setValue(System::getUser()->username);
+			$username->readonly = true;
+
+			$nickname->setValue(System::getUser()->nickname);
+			$nickname->readonly = true;
+		}
+		$fieldset->addElements($username, $nickname);
 		
 		
 		$email = new Text('email', System::getLanguage()->_('EMail'), true);
@@ -43,7 +56,7 @@ final class ProfileController extends ControllerBase {
 		$language = new Radiobox('lang', System::getLanguage()->_('Language'), L10N::getLanguages());
 		$language->binding = new Databinding('lang');
 		
-		$fieldset->addElements($nickname, $email, $language);
+		$fieldset->addElements($email, $language);
 		$form->addElements($fieldset);
 		
 		$fieldset = new Fieldset(System::getLanguage()->_('Password'));

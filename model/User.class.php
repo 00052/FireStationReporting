@@ -1,6 +1,9 @@
 <?php
 final class User extends ModelBase {
-    
+
+	const USER_ADMIN	= 0;
+	const USER_STATION= 1;
+	const USER_SMALL_STATION	= 2;
 	/**
 	 * User ID
 	 * @var int
@@ -44,11 +47,11 @@ final class User extends ModelBase {
 	private $email;
 	
 	/**
-	 * Is Admin?
+	 * User type
 	 * @var boolean
 	 */
-	private $isAdmin = false;
-	
+	private $type = 1;
+
 	/**
 	 * Design
 	 * @var string
@@ -85,7 +88,7 @@ final class User extends ModelBase {
 		$this->salt			= $row['salt'];
 		
 		$this->email		= $row['email'];
-		$this->isAdmin		= (bool)$row['admin'];
+		$this->type			= $row['type'];
 		$this->last_login	= $row['last_login'];
 		$this->lang			= $row['lang'];
 		
@@ -120,7 +123,7 @@ final class User extends ModelBase {
 			':lang' => $this->lang,
 			':last_login' => $this->last_login,
 			':nickname' => $this->nickname,
-			':admin'	=> $this->isAdmin,
+			':type'	=> $this->type,
 			':design'	=> $this->design
 		);
 		
@@ -129,7 +132,7 @@ final class User extends ModelBase {
 			$data[':pswd'] = $this->password;
 			$data[':salt'] = $this->salt;
 			
-			$sql = System::getDatabase()->prepare('INSERT INTO users (username, nickname, email, admin, lang, password, salt, last_login, design) VALUES(:username, :nickname, :email, :admin, :lang, :pswd, :salt, :last_login, :design)');
+			$sql = System::getDatabase()->prepare('INSERT INTO users (username, nickname, email, type, lang, password, salt, last_login, design) VALUES(:username, :nickname, :email, :type, :lang, :pswd, :salt, :last_login, :design)');
 			$sql->execute($data);
 			
 			$this->uid = System::getDatabase()->lastInsertId();
@@ -139,9 +142,9 @@ final class User extends ModelBase {
 			if($this->password != NULL) {
 				$data[':pswd'] = $this->password;
 				$data[':salt'] = $this->salt;	
-				$sql = System::getDatabase()->prepare('UPDATE users SET username = :username, nickname = :nickname, email = :email, admin = :admin, lang = :lang, password = :pswd, salt = :salt, last_login = :last_login, design = :design WHERE _id = :uid');
+				$sql = System::getDatabase()->prepare('UPDATE users SET username = :username, nickname = :nickname, email = :email, type = :type, lang = :lang, password = :pswd, salt = :salt, last_login = :last_login, design = :design WHERE _id = :uid');
 			} else {
-				$sql = System::getDatabase()->prepare('UPDATE users SET username = :username, nickname = :nickname, email = :email, admin = :admin, lang = :lang, last_login = :last_login, design = :design WHERE _id = :uid');
+				$sql = System::getDatabase()->prepare('UPDATE users SET username = :username, nickname = :nickname, email = :email, type = :type, lang = :lang, last_login = :last_login, design = :design WHERE _id = :uid');
 			}
 			
 			$sql->execute($data);

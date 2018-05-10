@@ -279,28 +279,28 @@ var System = {
 			}
         });
 		
-		$('form').submit(function(e) {
-            var action = $(this).attr('action');
-			var noajax = $(this).attr('data-noajax'); // in some cases we must prevent ajax loading
-			
-			if(typeof(action) != "undefined" && action != "#" && noajax != "true") {
-				e.preventDefault();
-				
-				$(this).find('input[type=submit]').addClass('loading');	
-				
-				/**
-				 * Problem with History.js: when new url and current url
-				 * are the same, statechanged() is not triggered :/
-				 * In case of someone finds a better solution: feel free to
-				 * commit :-)
-				 */
-				if(window.location.href == action) {
-					$.post(action, $(this).serialize() + '&submit=submit', System.ajaxCallback);
-				} else {
-					History.pushState({'postData': $(this).serialize() + '&submit=submit'}, null, action);
-				}
-			}
-        });
+		//$('form').submit(function(e) {
+        //    var action = $(this).attr('action');
+		//	var noajax = $(this).attr('data-noajax'); // in some cases we must prevent ajax loading
+		//	
+		//	if(typeof(action) != "undefined" && action != "#" && noajax != "true") {
+		//		e.preventDefault();
+		//		
+		//		$(this).find('input[type=submit]').addClass('loading');	
+		//		
+		//		/**
+		//		 * Problem with History.js: when new url and current url
+		//		 * are the same, statechanged() is not triggered :/
+		//		 * In case of someone finds a better solution: feel free to
+		//		 * commit :-)
+		//		 */
+		//		if(window.location.href == action) {
+		//			$.post(action, $(this).serialize() + '&submit=submit', System.ajaxCallback);
+		//		} else {
+		//			History.pushState({'postData': $(this).serialize() + '&submit=submit'}, null, action);
+		//		}
+		//	}
+        //});
 
 		// Tooltips
 		$('a[title]').tooltip();

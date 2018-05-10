@@ -54,13 +54,24 @@ final class System {
 	 * Builds navigation
 	 */
 	private static function buildNavigation() {
+		Navigation::addElement(new NavigationElement(
+			System::getLanguage()->_('Welcome'), 'HelloController', 'hello', true, ''));
 		if(self::getUser() != NULL) {
-			Navigation::addElement(new NavigationElement(System::getLanguage()->_('Welcome'), 'HelloController', 'hello', true, 'hdd-o'));
-			
-			if(self::getUser()->isAdmin) {
-				Navigation::addElement(new NavigationElement(System::getLanguage()->_('Users'), 'UsersController', 'index', true, 'users'));
-                Navigation::addElement(new NavigationElement(System::getLanguage()->_('Log'), 'LogController', 'index', true, 'bullhorn'));
-				Navigation::addElement(new NavigationElement(System::getLanguage()->_('Admin'), 'AdminController', 'index', true, 'th-large'));                
+			Navigation::addElement(new NavigationElement(
+				System::getLanguage()->_('Report'), 'ReportController', 'index', true, ''));
+			if(self::getUser()->type == User::USER_ADMIN) {
+				Navigation::addElement(new NavigationElement(
+					System::getLanguage()->_('Reports'), 'ReportsController', 'index', true, ''));
+				Navigation::addElement(new NavigationElement(
+					System::getLanguage()->_('Users'), 'UsersController', 'index', true, 'users'));
+				Navigation::addElement(new NavigationElement(
+					System::getLanguage()->_('OfficerPanel'), 'OfficerController', 'index', true, ''));
+				Navigation::addElement(new NavigationElement(
+					System::getLanguage()->_('Log'), 'LogController', 'index', true, 'bullhorn'));
+				Navigation::addElement(new NavigationElement(
+					System::getLanguage()->_('AdminPanel'), 'AdminController', 'index', true, 'th-large'));                
+			} else {
+
 			}
 		}
 	}
@@ -122,7 +133,6 @@ final class System {
 	 */
 	public static function run() {
 		Router::getInstance()->run();	
-		debug_print_backtrace();
 	}
 	
 	/**
