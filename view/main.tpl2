@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">   
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{$title}</title>
 <link rel="stylesheet" href="{$HTTP_BASEDIR}/css/bootstrap.min.css" type="text/css" />
@@ -16,7 +19,9 @@ System.config.modRewrite = {if $MOD_REWRITE}true{else}false{/if};
 System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
 </script>
 <script type="text/javascript">
-{foreach $LangStrings as $key => $value}System.l10n.add('{$key}','{$value}');{/foreach}
+{foreach $LangStrings as $key => $value}
+System.l10n.add('{$key}','{$value}');
+{/foreach}
 </script>
 
 </head>
@@ -34,7 +39,7 @@ System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
                 </button>
                 
                 <a class="navbar-brand" href="{Router->build p1='HelloController' p2='index'}">
-                    SimplePHP
+                    信息上报
                 </a>
             </div>
            
@@ -104,10 +109,8 @@ System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
         {/if}
         {block name=content}{/block}
     </div>
-    
-    <div class="push"> </div>
 </div>
-
+<div class="push"></div>
 <footer>
 	<div class="wrapper">
         © {'Y'|date} | <a href="" data-noajax="true">SimplePHP</a>

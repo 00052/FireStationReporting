@@ -90,6 +90,7 @@ final class Install {
 		}
 		
 		$sql = file_get_contents(SYSTEM_ROOT . '/install/install.sql');
+		$sql .= file_get_contents(SYSTEM_ROOT . '/install/app.sql');
 		
 		try {
 			$db = new Database('mysql:dbname='.DATABASE_NAME.';host='.DATABASE_HOST, DATABASE_USER, DATABASE_PASS);

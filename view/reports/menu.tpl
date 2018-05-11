@@ -11,6 +11,5 @@
 {/foreach}
   </ul>
 </div>
-{block name=content1}
-{/block}
+{block name=content1}{/block}
 {/block}
