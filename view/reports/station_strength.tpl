@@ -1,18 +1,19 @@
 {extends 'reports/menu.tpl'}
 {block name=content1}
-<form class="form-inline">
-	<div class="form-group">
-		<label for="datefrom">From</label>
-		<input id="datefrom" type="text" class="form-control" role="date">
-		</div>
-		<div class="form-group">
-		<label for="dateto">To</label>
-		<input id="dateto" type="text" class="form-control" role="date">
-		<button type="submit" class="btn btn-primary">Search</button>
-		</div>
-	</div>
-</form>
 
+<br/>
+<form class="form-inline" action="{Router->build p1='ReportsController' p2='stationStrength'}">
+	<label for="date">Date</label>
+	<div class="form-group">
+		<div class="input-group date">
+		<input name="date" id="date" type="text" class="form-control" role="date" value={$date}>
+		<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+		</div>
+		<!--</div>-->
+	</div>
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>
+<br/>
 <div class="table-responsive">
 <table class="table table-bordered">
     <colgroup>
@@ -40,26 +41,40 @@
         <tr>
             <td>
                 <i class="fa fa-user"></i>
-                <a href="#">{$item->user->nickname}</a>
+                <a href="{$item['uid']}">{$item['nickname']}</a>
             </td>
-            <td>{$item->nofficer}</td>
-            <td>{$item->nsoldier}</td>
-            <td>{$item->nemployee}</td>
-            <td>{$item->nfireengine}</td>
-            <td>{$item->ndriver}</td>
+{if $item['reported']}
+            <td>{$item['nofficer']}</td>
+            <td>{$item['nsoldier']}</td>
+            <td>{$item['nemployee']}</td>
+            <td>{$item['nfireengine']}</td>
+            <td>{$item['ndriver']}</td>
+{else}
+			<td colspan=5 align="center">*No Reporting</td>
+{/if}
         </tr>
 {/foreach}
+		<tr>
+
+			<td><i class="fa fa-plus"></i>*Total</td>
+			<td>{$total['nofficer']}</td>
+            <td>{$total['nsoldier']}</td>
+            <td>{$total['nemployee']}</td>
+            <td>{$total['nfireengine']}</td>
+            <td>{$total['ndriver']}</td>
+
+		</tr>
     </tbody>
 </table>
 </div>
 <script type="text/javascript">
 $('input[role=date]').datepicker({
-format: "yy-mm-dd",
-todayBtn: true,
+format: "yyyy-mm-dd",
 language: "zh-CN",
 weekStart: 1,
 saysOfWeekHighlighted: "0,6",
-autoclose: true
+autoclose: true,
+todayHighlight: true
 }); 
 </script>
 {/block}

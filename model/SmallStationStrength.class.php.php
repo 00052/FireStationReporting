@@ -1,15 +1,10 @@
 <?php
 use ICanBoogie\DateTime;
-final class StationStrength extends ModelBase {
+final class SmallStationStrength extends ModelBase {
 	private $id;
 	private $userid;
 	private $user;
 	private $date;
-	private $nofficer = 0;
-	private $nsoldier = 0;
-	private $nemployee = 0;
-	private $nfireengine = 0;
-	private $ndriver = 0;
 
 	/**
 	 * Constructor
