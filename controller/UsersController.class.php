@@ -85,8 +85,8 @@ final class UsersController extends ControllerBase {
 			System::getLanguage()->_('UserType'), 
 			array(
 				'0' => System::getLanguage()->_('Administrator'),
-				'1' => System::getLanguage()->_('Squadron'), 
-				'2' => System::getLanguage()->_('Platoon'), 
+				'1' => System::getLanguage()->_('Station'), 
+				'2' => System::getLanguage()->_('SmallStation'), 
 			)
 		);
 		$usertype->binding = new Databinding('type');
@@ -124,6 +124,7 @@ final class UsersController extends ControllerBase {
 				if($form->validate()) {
 					$form->save();
 					$user->save();
+					System::getSession()->setData('successMsg', System::getLanguage()->_('SuccessToAdd'));
 					System::forwardToRoute(Router::getInstance()->build('UsersController', 'index'));
 					exit;
 				}
@@ -221,6 +222,7 @@ final class UsersController extends ControllerBase {
 			if($form->validate()) {
 					$form->save();
 					$user->save();
+					System::getSession()->setData('successMsg', System::getLanguage()->_('SuccessToEdit'));
 					System::forwardToRoute(Router::getInstance()->build('UsersController', 'index'));
 					exit;
 			}

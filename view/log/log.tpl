@@ -1,6 +1,7 @@
 {extends 'main.tpl'}
 {block name=content}
 
+<div class="table-responsive">
 {if $showPHPEntries}
 <table class="table table-striped table-hover">
 	<colgroup>
@@ -64,6 +65,7 @@
     </tbody>
 </table>
 {/if}
+</div>
 
 <div class="buttons">
 	<a href="{Router->build p1='LogController' p2='clear'}" class="btn btn-default btn-sm" role="button">

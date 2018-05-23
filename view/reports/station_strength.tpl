@@ -2,17 +2,8 @@
 {block name=content1}
 
 <br/>
-<form class="form-inline" action="{Router->build p1='ReportsController' p2='stationStrength'}">
-	<label for="date">Date</label>
-	<div class="form-group">
-		<div class="input-group date">
-		<input name="date" id="date" type="text" class="form-control" role="date" value={$date}>
-		<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-		</div>
-		<!--</div>-->
-	</div>
-	<button type="submit" class="btn btn-primary">Search</button>
-</form>
+{assign var='action' value="{Router->build p1='ReportsController' p2='stationStrength'}"}
+{include file="reports/datepicker.tpl"}
 <br/>
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -50,13 +41,13 @@
             <td>{$item['nfireengine']}</td>
             <td>{$item['ndriver']}</td>
 {else}
-			<td colspan=5 align="center">*No Reporting</td>
+			<td colspan=5 align="center">{'NotSubmit'|@lang}</td>
 {/if}
         </tr>
 {/foreach}
 		<tr>
 
-			<td><i class="fa fa-plus"></i>*Total</td>
+			<td><i class="fa fa-plus"></i>{'TotalRecord'|@lang}</td>
 			<td>{$total['nofficer']}</td>
             <td>{$total['nsoldier']}</td>
             <td>{$total['nemployee']}</td>
@@ -68,13 +59,16 @@
 </table>
 </div>
 <script type="text/javascript">
-$('input[role=date]').datepicker({
-format: "yyyy-mm-dd",
-language: "zh-CN",
-weekStart: 1,
-saysOfWeekHighlighted: "0,6",
-autoclose: true,
-todayHighlight: true
-}); 
+$(document).ready(function(){
+        $('input[role=date]').datepicker({
+            format: "yyyy-mm-dd",
+            language: "zh-CN",
+            weekStart: 1,
+            saysOfWeekHighlighted: "0,6",
+            autoclose: true,
+            todayHighlight: true
+        });
+    }   
+);
 </script>
 {/block}

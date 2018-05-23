@@ -42,7 +42,7 @@ abstract class ControllerBase {
 		if(System::getUser() == NULL) {
 			if(System::$isXHR) {
 				System::displayError(System::getLanguage()->_('PermissionDenied'), '403 Forbidden');
-			} else {		
+			} else {
 				System::forwardToRoute(Router::getInstance()->build('AuthController', 'login'));
 				exit;
 			}
@@ -54,8 +54,13 @@ abstract class ControllerBase {
 	 * if not - HTTP 403 is shown
 	 */	
 	public final function checkIfAdmin() {
-		if(System::getUser() == NULL || !System::getUser()->type == User::USER_ADMIN) {
-			System::displayError(System::getLanguage()->_('PermissionDenied'), '403 Forbidden');	
+		$this->checkAuthentification();
+		if(System::getUser() != NULL) {
+			if (!System::getUser()->type == User::USER_ADMIN) {
+				System::displayError(System::getLanguage()->_('PermissionDenied'), '403 Forbidden');	
+			}
+		} else {
+			System::forwardToRoute(Router::getInstance()->build('AuthController', 'login'));
 		}
 	}
 	

@@ -33,6 +33,5 @@ class Profile{
 			return NULL;
 		return Profile::$duties[$i];
 	}
-
 }
 ?>

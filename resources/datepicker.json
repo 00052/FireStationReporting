@@ -1,0 +1,18 @@
+{
+    "location": "/js/bootstrap-datepicker.min.js",
+    "version": "1.6",
+    "requires": [
+        {
+            "name" : "jQuery",
+            "minVersion": "1.7.1"
+        },
+		{
+			"name": "bootstrap",
+			"minVersion": "2.0.4"
+		}
+    ],
+	"stylesheets": [
+		"/css/bootstrap-datepicker3.min.css"
+	]
+
+}

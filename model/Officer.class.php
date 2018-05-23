@@ -4,7 +4,7 @@ final class Officer extends ModelBase {
 	 * 警官ID
 	 * @var int
 	 */
-	private $id = 0;
+	private $id;
 
 	/**
 	 * 警官姓名
@@ -56,7 +56,7 @@ final class Officer extends ModelBase {
 		} else {
 			$data[':id']	= $this->id;
 			
-			$sql = System::getDatabase()->prepare('UPDATE officers SET department = :department, name = :name, duty = :duty WHERE _id = :uid');
+			$sql = System::getDatabase()->prepare('UPDATE officers SET department = :department, name = :name, duty = :duty WHERE _id = :id');
 			
 			$sql->execute($data);
 		}
@@ -155,26 +155,17 @@ final class Officer extends ModelBase {
 			
 		$sql = System::getDatabase()->prepare($query);
 		$sql->execute($params);
+	
+		$list = array();
 		
-		if($sql->rowCount() == 0) {
-			return NULL;	
-		} /*else if($sql->rowCount() == 1) {
-			$officer = new Officer();
-			$officer->assign($sql->fetch());
-			
-			return $officer;
-		} */else {
-			$list = array();
-			
-			while($row = $sql->fetch()) {
+		while($row = $sql->fetch()) {
 
-				$officer = new Officer();
-				$officer->assign($row);
-				
-				$list[] = $officer;	
-			}
-			return $list;
+			$officer = new Officer();
+			$officer->assign($row);
+			
+			$list[] = $officer;	
 		}
+		return $list;
 	}
 	
 }

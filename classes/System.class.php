@@ -41,7 +41,7 @@ final class System {
 	 * @static
 	 */
 	public static function init() {
-		self::redirectHTTPS();		
+		//self::redirectHTTPS();		
 		Router::getInstance()->init(HOST_PATH, MOD_REWRITE);
 		self::$database = new Database('mysql:dbname='.DATABASE_NAME.';host='.DATABASE_HOST, DATABASE_USER, DATABASE_PASS);
 		self::$session = new Session();
@@ -54,18 +54,18 @@ final class System {
 	 * Builds navigation
 	 */
 	private static function buildNavigation() {
-		Navigation::addElement(new NavigationElement(
-			System::getLanguage()->_('Welcome'), 'HelloController', 'hello', true, ''));
 		if(self::getUser() != NULL) {
 			Navigation::addElement(new NavigationElement(
-				System::getLanguage()->_('Report'), 'ReportController', 'index', true, ''));
+				System::getLanguage()->_('Welcome'), 'HelloController', 'hello', true, 'handshake-o'));
+			Navigation::addElement(new NavigationElement(
+				System::getLanguage()->_('Report'), 'ReportController', 'index', true, 'calendar-plus-o'));
 			if(self::getUser()->type == User::USER_ADMIN) {
 				Navigation::addElement(new NavigationElement(
-					System::getLanguage()->_('Reports'), 'ReportsController', 'index', true, ''));
+					System::getLanguage()->_('Reports'), 'ReportsController', 'index', true, 'table'));
 				Navigation::addElement(new NavigationElement(
 					System::getLanguage()->_('Users'), 'UsersController', 'index', true, 'users'));
 				Navigation::addElement(new NavigationElement(
-					System::getLanguage()->_('OfficerPanel'), 'OfficerController', 'index', true, ''));
+					System::getLanguage()->_('OfficerPanel'), 'OfficerController', 'index', true, 'users'));
 				Navigation::addElement(new NavigationElement(
 					System::getLanguage()->_('Log'), 'LogController', 'index', true, 'bullhorn'));
 				Navigation::addElement(new NavigationElement(

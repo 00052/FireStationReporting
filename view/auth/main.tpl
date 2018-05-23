@@ -23,7 +23,9 @@ System.config.modRewrite = {$MOD_REWRITE};
 <div class="page">
     <header>
         <div class="container-fluid">
-            <img src="{$HTTP_BASEDIR}/images/logo.png" alt="sharecloud" width="100" />
+			<h1>指挥中心通讯协作平台</h1>
+			<br />
+            <img src="{$HTTP_BASEDIR}/images/logo.png" alt="sharecloud" width="200" />
         </div>
     </header>
     

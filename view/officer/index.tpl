@@ -24,7 +24,7 @@
     	<tr>
         	<td>
             	<i class="fa fa-user"></i>
-            	<a href="#">{$officer->name}</a>
+            	<a href="{Router->build p1='OfficerController' p2='edit' p3=$officer}">{$officer->name}</a>
             </td>
             <td>{$officer->department}</td>
             <td>{$officer->duty}</td>

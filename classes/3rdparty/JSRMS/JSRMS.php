@@ -8,7 +8,8 @@ class JSRMS {
     
     public function __construct(){
         
-        $this->jsonLocation = dirname(realpath( __FILE__ )).'/resources/';
+        //$this->jsonLocation = dirname(realpath( __FILE__ )).'/resources/';
+        $this->jsonLocation = SYSTEM_ROOT.'/resources/';
         
     }
 

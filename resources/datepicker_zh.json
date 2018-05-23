@@ -1,0 +1,6 @@
+{
+    "location"		: "/js/bootstrap-datepicker.zh-CN.min.js",
+    "version"		: "1.6",
+    "requires"		: [ ],
+    "stylesheets"	: [ ]
+}

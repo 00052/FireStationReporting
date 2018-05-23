@@ -17,7 +17,7 @@
  * !!! DO NOT use just 'localhost' while using Chrome! This will NOT work. Use 'localhost.tld' instead
  * and add the entry '127.0.0.1 localhost.tld' in your hosts file !!!
  */
-define('HOST_NAME', 'simplephp');
+define('HOST_NAME', 'tongxun.jmpesp.cc');
 
 /**
  * Your host path.
@@ -52,8 +52,8 @@ define('LANGUAGE', 'zh');
  * Should be self-explanatory
  */
 define('DATABASE_HOST', 'localhost');
-define('DATABASE_USER', 'root');
-define('DATABASE_PASS', 'root');
+define('DATABASE_USER', '');
+define('DATABASE_PASS', '');
 define('DATABASE_NAME', 'simplephp');
 
 // sry we do not support this at this time :/
@@ -80,7 +80,7 @@ define('DEV_MODE', true);
  * Minimal amount of characters
  * in a username
  */
-define('USERNAME_MIN_LENGTH', 6);
+define('USERNAME_MIN_LENGTH', 4);
 
 /**
  * Minimal amount of charachters
@@ -93,7 +93,7 @@ define('PASSWORD_MIN_LENGTH', 6);
  * to the name of the cookie that
  * is used to store the session ID
  */
-define('SESSION_NAME', 'SIMPLEPHP_SID');
+define('SESSION_NAME', 'SID');
 
 define('FILE_STORAGE_DIR', 'upload');
 ?>

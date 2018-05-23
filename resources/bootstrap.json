@@ -1,0 +1,10 @@
+{
+    "location" : "/js/bootstrap.min.js",
+    "version": "3.1.1",
+    "requires" : [
+        {
+            "name" : "jQuery",
+            "minVersion": "1.11"
+        }
+    ]
+}

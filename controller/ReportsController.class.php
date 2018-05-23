@@ -39,15 +39,11 @@ final class ReportsController extends ControllerBase {
 		);
 	}
 
-	public function index() {
 
-		$smarty = new Template;
-		$smarty->assign('title', System::getLanguage()->_('Reports'));
-		$smarty->assign('menu', self::makeMenu());
-		$smarty->assign('form', 'empty form');
-		$smarty->display('reports/index.tpl');
-	}
+    public function index() {
+        System::forwardToRoute(Router::getInstance()->build('ReportsController', 'stationStrength'));
 
+    }   
 	public function stationStrength() {
 		$date = $this->getGETParam('date',NULL);
 		if($date == NULL) {
@@ -63,8 +59,8 @@ final class ReportsController extends ControllerBase {
 		$strengthArray = StationStrength::find('date', $date, array('orderby'=>'user_ID', 'sort'=>'desc'));
 
 		$userArray = User::find('type',User::USER_STATION,array('orderby'=>'_id', 'sort'=>'desc'));
-		if(!is_array($userArray))
-			$userArray = array($userArray);
+		if($userArray == NULL) $userArray = array();
+		else if(!is_array($userArray)) $userArray = array($userArray);
 
 		$table = array();
 		$totalItem = array(
@@ -78,8 +74,8 @@ final class ReportsController extends ControllerBase {
 		$i=0;
 
 		foreach($userArray as $user) {
-			$tableItem 				= array();
-			$tableItem['uid'] 		= $user->uid;
+			$tableItem 		= array();
+			$tableItem['uid'] 	= $user->uid;
 			$tableItem['nickname'] 	= $user->nickname;
 
 			if($i > count($strengthArray) - 1 || $user->uid != $strengthArray[$i]->userid) {
@@ -98,26 +94,90 @@ final class ReportsController extends ControllerBase {
 			$table[] = $tableItem;
 		}
 
+
+		$menu = self::makeMenu();
+
 		$smarty = new Template;
 		$smarty->caching = 0;
-		$smarty->assign('title',System::getLanguage()->_('StrengthReport'));
-		$smarty->assign('menu', self::makeMenu());
+        $smarty->assign('title', System::getLanguage()->_('SubmitReport'));
+		$smarty->assign('menu',$menu); 
+		$smarty->assign('menutitle', System::getLanguage()->_($menu[0][0]));
 		$smarty->assign('date', $date);
 		$smarty->assign('table', $table);
 		$smarty->assign('total', $totalItem);
 		$smarty->requireResource('datepicker');
 		$smarty->requireResource('datepicker_zh');
+		//$smarty->requireResource('datepicker_init');
 		$smarty->display('reports/station_strength.tpl');
 	}
 
 	public function smallStationStrength() {
-		$smarty = new Template;
-		$smarty->assign('title',System::getLanguage()->_('SmallStrengthReport'));
-		$smarty->assign('menu', self::makeMenu());
-		$smarty->assign('form', 'empty form');
-		$smarty->display('reports/small_station_strength.tpl');
+		$date = $this->getGETParam('date',NULL);
+		if($date == NULL) {
+			$time = new DateTime('now', 'Asia/Shanghai');
+			$date = $time->format_as_date();
+		} else {
+			if(!DateFormat::isValidDate($date)) {
+				System::displayError(System::getLanguage()->_('InvalidDateFormat'));
+				exit;
+			}
+		}
 
+		$strengthArray = SmallStationStrength::find('date', $date, array('orderby'=>'user_ID', 'sort'=>'desc'));
+
+		$userArray = User::find('type',User::USER_SMALL_STATION,array('orderby'=>'_id', 'sort'=>'desc'));
+
+		if($userArray == NULL) $userArray = array();
+		else if(!is_array($userArray)) $userArray = array($userArray);
+
+		$table = array();
+		$totalItem = array(
+			'onduty'	=> 0,
+			'vehicle'	=> 0,
+			'vehicle_inuse'	=> 0,
+			'driver'=>0,
+		);
+
+		$i=0;
+
+		foreach($userArray as $user) {
+			$tableItem 				= array();
+			$tableItem['uid'] 		= $user->uid;
+			$tableItem['nickname'] 	= $user->nickname;
+
+			if($i > count($strengthArray) - 1 || $user->uid != $strengthArray[$i]->userid) {
+				$tableItem['reported'] = 0; //No reporting
+			} else {
+				$tableItem['reported'] = 1;
+
+				$totalItem['onduty'] += $tableItem['onduty'] = $strengthArray[$i]->onduty;
+				$totalItem['driver'] += $tableItem['driver'] = $strengthArray[$i]->driver;
+				$totalItem['vehicle']+= $tableItem['vehicle'] = $strengthArray[$i]->vehicle;
+				$totalItem['vehicle_inuse'] += $tableItem['vehicle_inuse'] = $strengthArray[$i]->vehicle_inuse;
+				$tableItem['vehicle_condition'] = $strengthArray[$i]->vehicle_condition;
+				$tableItem['equipment_condition'] = $strengthArray[$i]->equipment_condition;
+
+				$i++;
+			}
+			$table[] = $tableItem;
+		}
+
+
+		$menu = self::makeMenu();
+
+		$smarty = new Template;
+		$smarty->caching = 0;
+        $smarty->assign('title', System::getLanguage()->_('SubmitReport'));
+		$smarty->assign('menu', $menu);
+		$smarty->assign('menutitle', $menu[1][0]);
+		$smarty->assign('date', $date);
+		$smarty->assign('table', $table);
+		$smarty->assign('total', $totalItem);
+		$smarty->requireResource('datepicker');
+		$smarty->requireResource('datepicker_zh');
+		$smarty->display('reports/small_station_strength.tpl');
 	}
+
 	public function onFinished($action = '') {
 
 	}

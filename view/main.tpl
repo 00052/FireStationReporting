@@ -33,8 +33,8 @@ System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
                     <span class="icon-bar"> </span>
                 </button>
                 
-                <a class="navbar-brand" href="{Router->build p1='HelloController' p2='index'}">
-                    SimplePHP
+                <a class="navbar-brand" href="{Router->build p1='HelloController' p2='hello'}">
+                    指挥中心通讯协作平台
                 </a>
             </div>
            
@@ -51,7 +51,7 @@ System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                     	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        	<i class="fa fa-lg fa-user"></i> {$User->username} <b class="caret"></b>
+                        	<i class="fa fa-lg fa-user"></i>{$User->nickname}({$User->username})<b class="caret"></b>
                         </a>
                         
                         <ul class="dropdown-menu">
@@ -99,10 +99,14 @@ System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
     </div>
     
     <div class="main container-fluid">
+	<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
         {if $heading|default:FALSE}
         	<h3>{$heading}</h3>
         {/if}
         {block name=content}{/block}
+	</div>
+	</div>
     </div>
     
     <div class="push"> </div>
@@ -110,7 +114,7 @@ System.config.maxUploadSize = {$MAX_UPLOAD_SIZE};
 
 <footer>
 	<div class="wrapper">
-        © {'Y'|date} | <a href="" data-noajax="true">SimplePHP</a>
+        © {'Y'|date} | <a href="http://github.com/poilynx/SimplePHP" data-noajax="true">SimplePHP</a>
     </div>
 </footer>
 

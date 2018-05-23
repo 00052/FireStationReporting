@@ -26,6 +26,7 @@ $router->addRoute('/users/delete/:uid:', 'UsersController', 'delete');
 
 $router->addRoute('/officer', 'OfficerController', 'index');
 $router->addRoute('/officer/add', 'OfficerController', 'add');
+$router->addRoute('/officer/edit/:id:', 'OfficerController', 'edit');
 $router->addRoute('/officer/delete/:id:', 'OfficerController', 'delete');
 
 
@@ -43,13 +44,12 @@ $router->addRoute('/hello', 'HelloController', 'hello');
 
 
 $router->addRoute('/report', 'ReportController', 'index');
-$router->addRoute('/report/add/zdsl', 'ReportController', 'add_station_strength');
-$router->addRoute('/report/add/wxzsl', 'ReportController', 'add_small_station_strength');
+$router->addRoute('/report/add/zdsl', 'ReportController', 'addStationStrength');
+$router->addRoute('/report/add/wxzsl', 'ReportController', 'addSmallStationStrength');
 
 $router->addRoute('/reports', 'ReportsController', 'index');
 $router->addRoute('/reports/zdsl', 'ReportsController', 'stationStrength');
 $router->addRoute('/reports/wxzsl', 'ReportsController', 'smallStationStrength');
-
 
 
 ?>

@@ -3,7 +3,8 @@
 
 <table class="table table-striped table-hover">
 	<colgroup>
-        <col class="col-sm" />
+        <col />
+        <col />
         <col />
     </colgroup>
     
@@ -11,6 +12,7 @@
     	<tr>
         	<th>{'Username'|@lang}</th>
 			<th>{'Nickname'|@lang}</th>
+			<th>{'Usertype'|@lang}</th>
         </tr>
     </thead>
     
@@ -22,6 +24,14 @@
             	<a href="{Router->build p1='UsersController' p2='edit' p3=$user}">{$user->username}</a>
             </td>
 			<td>{$user->nickname}</td>
+			{if $user->type == User::USER_ADMIN}
+			<td>{'Admin'|@lang}</td>
+			{elseif $user->type == User::USER_STATION}
+			<td>{'Station'|@lang}</td>
+			{elseif $user->type == User::USER_SMALL_STATION}
+			<td>{'SmallStation'|@lang}</td>
+			{/if}
+			
         </tr>
 {/foreach}
     </tbody>

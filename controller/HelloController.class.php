@@ -1,14 +1,15 @@
 <?php
 final class HelloController extends ControllerBase {
 	protected function onBefore($action = '') {
-		parent::checkIfAuthentication();
+		parent::checkAuthentification();
 	}
 
 		
 	public function hello() {
 		$smarty = new Template;
-		$smarty->assign('title','Title');
-		$smarty->assign('isAdmin',System::getUser() != NULL && System::getUser()->type == User::USER_ADMIN);
+		$smarty->assign('title',System::getLanguage()->_('Welcome')." ");
+		$smarty->assign('usertype',System::getUser());
+		$smarty->assign('nickname',System::getUser()->nickname);
 		$smarty->display('hello/main.tpl');
 	}
 

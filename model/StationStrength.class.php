@@ -5,11 +5,11 @@ final class StationStrength extends ModelBase {
 	private $userid;
 	private $user;
 	private $date;
-	private $nofficer = 0;
-	private $nsoldier = 0;
-	private $nemployee = 0;
-	private $nfireengine = 0;
-	private $ndriver = 0;
+	private $nofficer;
+	private $nsoldier;
+	private $nemployee;
+	private $nfireengine;
+	private $ndriver;
 
 	/**
 	 * Constructor
@@ -172,6 +172,22 @@ final class StationStrength extends ModelBase {
 			return $list;
 		}
 	}
-	
+
+	public static function needReport() {
+			$datetime = new DateTime('now', 'Asia/Shanghai');
+			$date	= $datetime->format_as_date();
+
+			$query = 'select count(_id) from station_stg where date = :date';
+			$params = array(
+				'date'	=> $date
+			);
+
+			$sql = System::getDatabase()->prepare($query);
+			$sql->execute($params);
+
+			if($sql->rowCount() == 0)
+				return TRUE;
+			return FALSE;
+	}
 }
 ?>

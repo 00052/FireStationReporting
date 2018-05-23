@@ -140,13 +140,14 @@ class Text extends FormElement {
 		if($this->valid == 'numeric' && ($this->minlength > 0 || $this->maxlength > 0)) {
 			if($this->maxlength == 0) {
 				$attr['pattern'] = '([0-9]{'.$this->minlength.'})';
-				$attr['title']	 = 'Zahlenfeld (mind. '.$this->minlength.' Ziffern)';
+				#$attr['title']	 = 'Zahlenfeld (mind. '.$this->minlength.' Ziffern)';
+				$attr['title']	 = sprintf(System::getLanguage()->_('MinInputSize')." %d",$this->minlength);
 			} elseif($this->minlength == 0) {
 				$attr['pattern'] = '([0-9]{'.$this->maxlength.'})';
-				$attr['title']	 = 'Zahlenfeld (max. '.$this->maxlength.' Ziffern)';
+				$attr['title']	 = sprintf(System::getLanguage()->_('MaxInputSize')." %d",$this->maxlength);
 			} else {
 				$attr['pattern'] = '([0-9]{'.$this->minlength.','.$this->maxlength.'})';
-				$attr['title']	 = 'Zahlenfeld (mind. '.$this->minlength.', max. '.$this->maxlength.' Ziffern)';
+				$attr['title']	 = sprintf(System::getLanguage()->_('InputSize').' %d~%d', $this->minlength, $this->maxlength);
 			}
 		}
 		

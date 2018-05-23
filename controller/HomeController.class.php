@@ -5,7 +5,7 @@ final class HomeController extends ControllerBase {
 	}
 	
 	public function index() {
-		System::forwardToRoute(Router::getInstance()->build('UsersController', 'index'));
+		System::forwardToRoute(Router::getInstance()->build('HelloController', 'hello'));
 		echo "Home Controller";
 		exit;	
 	}
